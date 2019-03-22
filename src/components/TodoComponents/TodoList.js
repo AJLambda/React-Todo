@@ -8,14 +8,14 @@ import Todo from "./Todo";
 
 const TodoList = (props) => {
     return (
-
-        <div>
-
+    
+    <div className = "todoWrapper">
+        
             {props.todoList.map((item, index) => (
                 <Todo todo = {item} key = {index} toggleTodo={props.toggleTodo}/>
             ))}
 
-        </div>
+    </div>
 
     )
 }
