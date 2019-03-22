@@ -1,7 +1,9 @@
 import React from 'react';
 
+
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
+
 
 
 //Array of Todo objects
@@ -67,7 +69,18 @@ class App extends React.Component {
     });
   };
   
+  toggleTodo = id => {
+    const newList = this.state.todoList.map(item => {
+      if(item.id === id) {
+        item.completed = !item.completed;
+        return item;
+      } else {
+        return item;
+      }
+    })
 
+    this.setState ({todoList: newList})
+  }
   
   render() {
     return (
@@ -78,7 +91,7 @@ class App extends React.Component {
         <TodoList 
 
           todoList={this.state.todoList} 
-
+          toggleTodo={this.toggleTodo}
         />
 
         <TodoForm 

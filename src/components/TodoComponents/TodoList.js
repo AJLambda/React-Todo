@@ -12,7 +12,7 @@ const TodoList = (props) => {
         <div>
 
             {props.todoList.map((item, index) => (
-                <Todo key={index} todo = {item} />
+                <Todo todo = {item} key = {index} toggleTodo={props.toggleTodo}/>
             ))}
 
         </div>
