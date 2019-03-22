@@ -70,17 +70,36 @@ class App extends React.Component {
   };
   
   toggleTodo = id => {
-    const newList = this.state.todoList.map(item => {
+    const toggleList = this.state.todoList.map(item => {
       if(item.id === id) {
         item.completed = !item.completed;
         return item;
       } else {
         return item;
       }
-    })
+    });
 
-    this.setState ({todoList: newList})
-  }
+    this.setState ({todoList: toggleList})
+    // loop over todoData
+    // find item by given id
+    // change flag to true
+    // return updated list to state.
+  };
+
+
+  //Add the ability to remove any todos that you have completed. .filter will be your best friend here. When a user clicks on the Clear Completed button call your handler function that will filter out any todos that have the completed flag toggled to true.
+
+  clearCompleted = event => {
+    event.preventDefault();
+    let clearList = this.state.todoList.filter(item => !item.completed) 
+   
+
+    this.setState ({todoList: clearList})
+    // use filter
+    // looping over all the items inside of `this.state.todoList`
+    // filter out any items, who's item.completed === true
+    // set your state with your new filtered list.
+  };
   
   render() {
     return (
@@ -92,19 +111,23 @@ class App extends React.Component {
 
           todoList={this.state.todoList} 
           toggleTodo={this.toggleTodo}
+
         />
 
         <TodoForm 
 
+
+          task={this.state.task}
           handleChanges={this.handleChanges}
           addTodo={this.addTodo}
-          task={this.state.task}
+          clearCompleted={this.clearCompleted}
+        
 
         />
         
       </div>
     );
-  }
-}
+  };
+};
 
 export default App;
